@@ -47,8 +47,5 @@ module.exports = {
     ],
     //minimize: true,
   },
-  plugins: [
-    new MiniCssExtractPlugin({filename: 'main.min.css'}),
-    new CleanWebpackPlugin(['dist'])
-  ]
+  plugins: [new MiniCssExtractPlugin({filename: 'main.min.css'})]
 };

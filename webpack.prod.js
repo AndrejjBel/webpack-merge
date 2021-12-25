@@ -6,14 +6,13 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
-  entry: [
-        './src/app.js'
-    ],
+  mode: "production",
+  entry: ["./src/app.js"],
   devtool: "source-map",
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, "dist"),
+    filename: "bundle.js",
+    clean: true
   },
   module: {
     rules: [
@@ -21,11 +20,11 @@ module.exports = {
         test: /\.m?js$/,
         exclude: /(node_modules|bower_components)/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+            presets: ["@babel/preset-env"],
+          },
+        },
       },
       {
         test: /\.css$/i,
@@ -35,21 +34,19 @@ module.exports = {
         test: /\.scss$/i,
         use: [
           MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
         ],
-      }
-    ]
+      },
+    ],
   },
   optimization: {
-    minimizer: [
-      new CssMinimizerPlugin(),
-    ],
+    minimizer: [new CssMinimizerPlugin()],
     minimize: true,
   },
   plugins: [
-    new MiniCssExtractPlugin({filename: 'main.min.css'}),
-    new CleanWebpackPlugin(['dist'])
-  ]
+    new MiniCssExtractPlugin({ filename: "main.min.css" }),
+    new CleanWebpackPlugin(["dist"]),
+  ],
 };
